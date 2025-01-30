@@ -11,12 +11,17 @@ jobs:
 
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@v4  # Updated to version 4
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4  # Use version 4
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.12'  # You can specify a version you need
+        python-version: '3.12'  # Adjust as needed
+
+    - name: Clean build directory
+      run: |
+        rm -rf ./New\ Folder/build/
+        rm -rf ./New\ Folder/dist/
 
     - name: Install py2app
       run: |
@@ -26,10 +31,10 @@ jobs:
     - name: Build the app
       run: |
         python setup.py py2app
-      working-directory: ./New Folder  # Specify the directory containing your files
+      working-directory: ./New\ Folder
 
     - name: Archive the built app
-      uses: actions/upload-artifact@v4  # Ensure right version of the artifact uploader is used
+      uses: actions/upload-artifact@v4
       with:
         name: SearchTaskApp
-        path: ./New Folder/dist/*.app  # Path to your app bundle
+        path: ./New\ Folder/dist/*.app
