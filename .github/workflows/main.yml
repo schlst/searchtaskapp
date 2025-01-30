@@ -3,7 +3,7 @@ name: macOS Application Build
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   build:
@@ -11,10 +11,12 @@ jobs:
 
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4  # Updated to version 4
 
     - name: Set up Python
-      uses: actions/setup-python@v4   # Update to v4
+      uses: actions/setup-python@v4  # Use version 4
+      with:
+        python-version: '3.12'  # You can specify a version you need
 
     - name: Install py2app
       run: |
@@ -24,9 +26,10 @@ jobs:
     - name: Build the app
       run: |
         python setup.py py2app
+      working-directory: ./New Folder  # Specify the directory containing your files
 
     - name: Archive the built app
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4  # Ensure right version of the artifact uploader is used
       with:
         name: SearchTaskApp
-        path: dist/*.app
+        path: ./New Folder/dist/*.app  # Path to your app bundle
