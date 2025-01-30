@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'  # Adjust as needed
+        python-version: '3.12'  # Adjust as needed
 
     - name: Install dependencies
       run: |
@@ -38,7 +38,7 @@ jobs:
         mv './New Folder/dist' './dist'
 
     - name: Archive the built app
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: SearchTaskApp
         path: './dist/*.app'
