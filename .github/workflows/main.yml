@@ -1,0 +1,32 @@
+name: macOS Application Build
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v4   # Update to v4
+
+    - name: Install py2app
+      run: |
+        python -m pip install --upgrade pip
+        pip install py2app
+
+    - name: Build the app
+      run: |
+        python setup.py py2app
+
+    - name: Archive the built app
+      uses: actions/upload-artifact@v3
+      with:
+        name: SearchTaskApp
+        path: dist/*.app
