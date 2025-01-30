@@ -16,12 +16,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.12'  # Adjust as needed
+        python-version: '3.9'  # Adjust as needed
 
     - name: Clean build directory
       run: |
-        rm -rf ./New\ Folder/build/
-        rm -rf ./New\ Folder/dist/
+        rm -rf './New Folder/build/'
+        rm -rf './New Folder/dist/'
 
     - name: Install py2app
       run: |
@@ -31,10 +31,10 @@ jobs:
     - name: Build the app
       run: |
         python setup.py py2app
-      working-directory: ./New\ Folder
+      working-directory: './New Folder'
 
     - name: Archive the built app
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: SearchTaskApp
-        path: ./New\ Folder/dist/*.app
+        path: './New Folder/dist/*.app'
