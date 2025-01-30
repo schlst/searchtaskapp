@@ -26,7 +26,7 @@ jobs:
         python setup.py py2app
 
     - name: Archive the built app
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: SearchTaskApp
         path: dist/*.app
